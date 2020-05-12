@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.julianoHenrique.cursomc.domain.Categoria;
 import com.julianoHenrique.cursomc.domain.Cidade;
+import com.julianoHenrique.cursomc.domain.Cliente;
+import com.julianoHenrique.cursomc.domain.Endereco;
 import com.julianoHenrique.cursomc.domain.Estado;
 import com.julianoHenrique.cursomc.domain.Produto;
+import com.julianoHenrique.cursomc.domain.enums.TipoCliente;
 import com.julianoHenrique.cursomc.repositories.CategoriaRepository;
 import com.julianoHenrique.cursomc.repositories.CidadeRepository;
+import com.julianoHenrique.cursomc.repositories.ClienteRepository;
+import com.julianoHenrique.cursomc.repositories.EnderecoRepository;
 import com.julianoHenrique.cursomc.repositories.EstadoRepository;
 import com.julianoHenrique.cursomc.repositories.ProdutoRepository;
 
@@ -21,15 +26,16 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	CategoriaRepository categoriRepository;
-	
 	@Autowired
 	ProdutoRepository produtoRepository;
-	
 	@Autowired
 	EstadoRepository estadoRepository;
-	
 	@Autowired
 	CidadeRepository cidadeRepository;
+	@Autowired
+	ClienteRepository clienteRepository;
+	@Autowired
+	EnderecoRepository enderecoRepository;
 	
 	
 
@@ -70,6 +76,20 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "0770969658", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("32899430","996456529"));
+		
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "apto 203", "jardim", "38220834", cli1, c1);
+		
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "apto 203", "centro", "38777012", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		
 		
 		
 		
