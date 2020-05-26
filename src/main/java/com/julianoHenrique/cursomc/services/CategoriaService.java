@@ -1,5 +1,6 @@
 package com.julianoHenrique.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,9 @@ public class CategoriaService {
 			throw new DataIntegrityException("Não é Possivel Excluir uma Categoria que possui Produtos");
 		}
 		repo.deleteById(id);
+	}
+	
+	public List<Categoria> findAll(){
+		return repo.findAll();
 	}
 }
