@@ -29,7 +29,7 @@ public class Pedido implements Serializable{
 	
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
-	private Pagamento pagmento;
+	private Pagamento pagamento;
 	
 	
 	@ManyToOne
@@ -80,11 +80,11 @@ public class Pedido implements Serializable{
 	}
 
 	public Pagamento getPagamento() {
-		return pagmento;
+		return pagamento;
 	}
 
-	public void setPagmento(Pagamento pagmento) {
-		this.pagmento = pagmento;
+	public void setPagmento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 	public Cliente getCliente() {
