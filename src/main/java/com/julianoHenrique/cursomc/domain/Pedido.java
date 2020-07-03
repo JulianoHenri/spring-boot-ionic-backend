@@ -79,7 +79,7 @@ public class Pedido implements Serializable{
 		this.instante = instante;
 	}
 
-	public Pagamento getPagmento() {
+	public Pagamento getPagamento() {
 		return pagmento;
 	}
 
